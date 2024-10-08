@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url('background.jpg') no-repeat center center fixed; /* Remplace 'background.jpg' par le nom de ton image */
+    background-size: cover; /* Pour couvrir tout l'arrière-plan */
+    color: white; /* Change la couleur du texte pour mieux contraster avec le fond */
+    font-family: Arial, sans-serif; /* Change la police si tu le souhaites */
+    font-size: 25px; /* Taille de la police */
+    text-shadow: 2px 2px 4px black; /* Ajoute une ombre noire autour du texte */
+}
+
+h1 {
+    text-align: center; /* Centrer le titre */
+    margin-top: 50px; /* Marge supérieure pour espacer du haut de la page */
+}
+
+.container {
+    max-width: 800px; /* Largeur maximale du contenu */
+    margin: 0 auto; /* Centrer le contenu */
+    padding: 20px; /* Espacement autour du contenu */
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour le contenu */
+    border-radius: 10px; /* Arrondir les bords */
+}
