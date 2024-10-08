@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  # Service de l'application Web
+  web_app:
+    image: nginx    # Utilise l'image Nginx pour l'application Web
+    container_name: web_app
+    networks:
+      - public_network   # Connexion au réseau public (accessible depuis Internet)
+      - private_network  # Connexion au réseau privé pour accéder à la base de données
+    ports:
+      - "80:80"          # Expose le port 80 sur la machine hôte pour l'accès via Internet
+    volumes:
+      - ./web:/usr/share/nginx/html  # Pour servir du contenu statique depuis un répertoire local
+
+  # Service de la base de données
+  db:
+    image: mysql:5.7     # Image MySQL pour la base de données
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: mysecretpassword
+      MYSQL_DATABASE: myappdb
+    networks:
+      - private_network  # Connexion uniquement au réseau privé
+    volumes:
+      - db_data:/var/lib/mysql  # Stockage persistant pour les données de la base
+
+# Définition des réseaux Docker
+networks:
+  public_network:
+    driver: bridge  # Réseau public accessible depuis l'extérieur
+  private_network:
+    driver: bridge  # Réseau privé isolé accessible uniquement aux services définis ici
+
+# Définition des volumes persistants
+volumes:
+  db_data:
