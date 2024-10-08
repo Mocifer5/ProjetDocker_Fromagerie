@@ -11,7 +11,7 @@
         <?php
         $servername = "mysql";
         $username = "fromage_user";
-        $password = "fromage_pass";
+        $password = "fromage_password";
         $dbname = "fromage_db";
 
         // Créer une connexion à MySQL
@@ -30,7 +30,7 @@
             while($row = $result->fetch_assoc()) {
                 echo   $row["nom"]. "      : " . $row["prix"]. " EUR<br>";
             }
-        } else {
+        } else { 
             echo "0 résultats";
         }
         $conn->close();
