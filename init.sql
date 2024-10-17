@@ -1,5 +1,6 @@
-CREATE USER IF NOT EXISTS 'fromage_user'@'%' IDENTIFIED BY 'fromage_password';
 CREATE DATABASE IF NOT EXISTS fromage_db;
+
+CREATE USER IF NOT EXISTS 'fromage_user'@'%' IDENTIFIED BY 'fromage_password';
 GRANT ALL PRIVILEGES ON fromage_db.* TO 'fromage_user'@'%';
 FLUSH PRIVILEGES;
 

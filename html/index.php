@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"> <!-- Inclure le fichier CSS -->
+    <link rel="stylesheet" href="style.css">
     <title>Liste des Fromages</title>
 </head>
 <body>
-    <div class="container"> <!-- Utilisation d'une div pour le style -->
+    <div class="container">
         <?php
-        $servername = "mysql";
+        $servername = "db";
         $username = "fromage_user";
         $password = "fromage_password";
         $dbname = "fromage_db";
 
-        // Créer une connexion à MySQL
+        // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Vérifier la connexion
+        // Check connection
         if ($conn->connect_error) {
             die("Échec de la connexion : " . $conn->connect_error);
         }
@@ -28,7 +28,7 @@
         if ($result->num_rows > 0) {
             echo "<h1>Liste des Fromages</h1>";
             while($row = $result->fetch_assoc()) {
-                echo   $row["nom"]. "      : " . $row["prix"]. " EUR<br>";
+                echo $row["nom"] . " : " . $row["prix"] . " EUR<br>";
             }
         } else { 
             echo "0 résultats";
