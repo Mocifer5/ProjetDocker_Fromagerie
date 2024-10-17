@@ -1,4 +1,11 @@
-CREATE TABLE fromages (
+CREATE USER IF NOT EXISTS 'fromage_user'@'%' IDENTIFIED BY 'fromage_password';
+CREATE DATABASE IF NOT EXISTS fromage_db;
+GRANT ALL PRIVILEGES ON fromage_db.* TO 'fromage_user'@'%';
+FLUSH PRIVILEGES;
+
+USE fromage_db;
+
+CREATE TABLE IF NOT EXISTS fromages (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
     prix DECIMAL(10, 2) NOT NULL

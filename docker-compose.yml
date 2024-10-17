@@ -15,8 +15,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: fromage_db
+      MYSQL_USER: fromage_user
+      MYSQL_PASSWORD: fromage_password
     volumes:
       - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   db_data:
