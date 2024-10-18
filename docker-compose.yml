@@ -2,7 +2,7 @@ services:
   web:
     build:
       context: ./web
-      dockerfile: Dockerfile  # Simpler Dockerfile without MySQLi
+      dockerfile: Dockerfile  
     container_name: php_web
     ports:
       - "8080:80"
@@ -15,7 +15,7 @@ services:
   internal_api:
     build:
       context: ./api
-      dockerfile: Dockerfile  # Dockerfile with MySQLi for API interaction
+      dockerfile: Dockerfile 
     container_name: internal_api
     networks:
       - private_network
@@ -35,6 +35,15 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - private_network
+
+  kali: 
+    image: kalilinux/kali-rolling
+    container_name: kali_pentest
+    networks:
+      - public_network
+      - private_network
+    tty: true
+    command: sleep infinity
 
 networks:
   public_network:
