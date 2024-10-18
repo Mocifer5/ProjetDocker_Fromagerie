@@ -17,3 +17,4 @@ INSERT INTO fromages (nom, prix) VALUES
 ('Brie', 5.20),
 ('Roquefort', 6.80),
 ('Comté', 8.90);
+    
