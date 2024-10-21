@@ -28,7 +28,7 @@ apt-get install -y sqlmap
 ```
 example:
 ```
-sqlmap -u "http://php_web/index.php" --data="nom=Brie&prix=4.50" --dbs
+sqlmap -u "http://internal_api/api.php" --data="nom=Test&prix=50" --dbs
 ```
 
 ## Install curl command for XSS
@@ -36,6 +36,7 @@ sqlmap -u "http://php_web/index.php" --data="nom=Brie&prix=4.50" --dbs
 apt-get install -y curl
 ```
 example:
+pas fonctionne
 ```
 curl -X POST -d "nom=<script>alert('XSS Test')</script>&prix=4.50" http://php_web/index.php
 ```
