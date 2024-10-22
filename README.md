@@ -9,7 +9,7 @@ Ping command from your pentest_container to ensure all services are reachable ov
 
 ### Open  shell in `pentest_container` container
 ```
-docker exec -it pentest_container /bin/bash
+docker exec -it pentest_external /bin/bash
 ```
 
 ### Update `apt-get`

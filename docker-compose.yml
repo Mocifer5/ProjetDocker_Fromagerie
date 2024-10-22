@@ -8,6 +8,7 @@ services:
       - "8080:80"
     networks:
       - public_network
+      - private_network
     depends_on:
       - internal_api
 
