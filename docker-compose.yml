@@ -8,7 +8,6 @@ services:
       - "8080:80"
     networks:
       - public_network
-      - private_network
     depends_on:
       - internal_api
 
@@ -32,19 +31,28 @@ services:
       MYSQL_PASSWORD: fromage_password
     volumes:
       - db_data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - private_network
 
-  pentest:
-    image: ubuntu:latest 
-    container_name: pentest_container
+  # External pentest container for public-facing services like web
+  pentest_external:
+    image: ubuntu:latest
+    container_name: pentest_external
     networks:
       - public_network
+    tty: true  
+    stdin_open: true  
+    command: sleep infinity
+
+  # Internal pentest container for internal services like API and database
+  pentest_internal:
+    image: ubuntu:latest
+    container_name: pentest_internal
+    networks:
       - private_network
     tty: true  
     stdin_open: true  
-    command: sleep infinity  
+    command: sleep infinity
 
 networks:
   public_network:
