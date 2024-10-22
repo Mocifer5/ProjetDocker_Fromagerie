@@ -52,6 +52,7 @@ services:
     container_name: pentest_internal
     networks:
       - private_network
+      - public_network
     tty: true  
     stdin_open: true  
     command: sleep infinity
