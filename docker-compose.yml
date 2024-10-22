@@ -17,6 +17,8 @@ services:
       context: ./api
       dockerfile: Dockerfile 
     container_name: internal_api
+    ports:
+      - "8081:80"
     networks:
       - private_network
     depends_on:
