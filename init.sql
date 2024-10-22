@@ -15,4 +15,4 @@ INSERT INTO fromages (nom, prix) VALUES
 ('Camembert', 4.50),
 ('Brie', 5.20),
 ('Roquefort', 6.80),
-('Comté', 8.90);
+('Comte', 8.90);
